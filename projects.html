@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects & Roadmap - Big Bird | 20 Years of Innovation</title>
+    <meta name="description"
+        content="Explore Big Bird's 20-year journey through enterprise software development, featuring major projects, achievements, and technological evolution.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-glow: #00f3ff;
+            --secondary-glow: #7b2ff7;
+            --accent-glow: #ff006e;
+            --success-glow: #00ff88;
+            --bg-dark: #0a0a0f;
+            --bg-card: rgba(20, 20, 35, 0.7);
+            --text-primary: #ffffff;
+            --text-secondary: #b8b8d1;
+            --gradient-tech: linear-gradient(135deg, #00f3ff 0%, #7b2ff7 50%, #ff006e 100%);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-animation canvas {
+            display: block;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.1);
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: var(--gradient-tech);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-glow);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-glow);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 8rem 5% 4rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .page-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            background: var(--gradient-tech);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: glow-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glow-pulse {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 20px rgba(0, 243, 255, 0.5));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 40px rgba(123, 47, 247, 0.8));
+            }
+        }
+
+        .page-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Timeline Container */
+        .timeline-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 5% 6rem;
+            position: relative;
+        }
+
+        /* Timeline Line */
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg,
+                    var(--primary-glow) 0%,
+                    var(--secondary-glow) 50%,
+                    var(--accent-glow) 100%);
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+        }
+
+        /* Timeline Period */
+        .timeline-period {
+            margin-bottom: 6rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .timeline-period:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .timeline-period:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .timeline-period:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .timeline-period:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .period-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .period-years {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient-tech);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+            padding: 1rem 2rem;
+            border: 2px solid rgba(0, 243, 255, 0.3);
+            border-radius: 50px;
+            background-color: var(--bg-card);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 10;
+        }
+
+        .period-title {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-top: 1rem;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-tech);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 243, 255, 0.3);
+            border-color: rgba(0, 243, 255, 0.5);
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* Alternate positioning for timeline effect */
+        .project-card:nth-child(odd) {
+            margin-right: calc(50% + 2rem);
+        }
+
+        .project-card:nth-child(even) {
+            margin-left: calc(50% + 2rem);
+        }
+
+        .project-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-tech);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.3);
+        }
+
+        .project-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .project-role {
+            color: var(--primary-glow);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-highlights {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-highlights li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .project-highlights li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary-glow);
+            font-weight: bold;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-badge {
+            padding: 0.4rem 1rem;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--primary-glow);
+            transition: all 0.3s ease;
+        }
+
+        .tech-badge:hover {
+            background: rgba(0, 243, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Milestone Marker */
+        .milestone-marker {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--primary-glow);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--primary-glow);
+            z-index: 5;
+        }
+
+        /* Stats Summary */
+        .journey-stats {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem auto;
+            max-width: 1000px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .stats-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            background: var(--gradient-tech);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(0, 243, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(0, 243, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: var(--gradient-tech);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 1px solid rgba(0, 243, 255, 0.1);
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 1rem;
+            padding: 0.8rem 2rem;
+            background: transparent;
+            color: var(--primary-glow);
+            border: 2px solid var(--primary-glow);
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .back-button:hover {
+            background: var(--primary-glow);
+            color: var(--bg-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .timeline-line {
+                left: 30px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card:nth-child(odd),
+            .project-card:nth-child(even) {
+                margin-left: 60px;
+                margin-right: 0;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .project-card:nth-child(odd),
+            .project-card:nth-child(even) {
+                margin-left: 0;
+            }
+
+            .timeline-line {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <canvas id="bgCanvas"></canvas>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">BB</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#expertise">Expertise</a></li>
+                <li><a href="index.html#stats">Stats</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1 class="page-title">20-Year Journey</h1>
+        <p class="page-subtitle">A roadmap of innovation, challenges conquered, and technologies mastered across two
+            decades of enterprise software development</p>
+    </section>
+
+    <!-- Timeline -->
+    <div class="timeline-container">
+        <div class="timeline-line"></div>
+
+        <!-- Period 1: 2005-2009 - The Foundation Years -->
+        <div class="timeline-period">
+            <div class="period-header">
+                <div class="period-years">2005 - 2009</div>
+                <div class="period-title">The Foundation Years</div>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-icon">🏗️</div>
+                    <h3 class="project-title">Legacy ERP Migration</h3>
+                    <div class="project-role">Junior Developer → Developer</div>
+                    <p class="project-description">Led the migration of a legacy COBOL-based inventory system to a
+                        modern Java/Oracle platform for a Fortune 500 manufacturing company.</p>
+                    <ul class="project-highlights">
+                        <li>Migrated 15+ years of historical data</li>
+                        <li>Zero downtime during transition</li>
+                        <li>Reduced processing time by 60%</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Java</span>
+                        <span class="tech-badge">Oracle</span>
+                        <span class="tech-badge">XML</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">📊</div>
+                    <h3 class="project-title">Financial Reporting Suite</h3>
+                    <div class="project-role">Developer</div>
+                    <p class="project-description">Developed a comprehensive financial reporting and analytics platform
+                        with real-time dashboards and automated monthly closings.</p>
+                    <ul class="project-highlights">
+                        <li>Automated 200+ manual reports</li>
+                        <li>Real-time financial KPI tracking</li>
+                        <li>SOX compliance implementation</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-badge">C#</span>
+                        <span class="tech-badge">.NET</span>
+                        <span class="tech-badge">SQL Server</span>
+                        <span class="tech-badge">Crystal Reports</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Period 2: 2010-2014 - Scaling Up -->
+        <div class="timeline-period">
+            <div class="period-header">
+                <div class="period-years">2010 - 2014</div>
+                <div class="period-title">Scaling Up</div>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-icon">🚀</div>
+                    <h3 class="project-title">Multi-Tenant ERP Platform</h3>
+                    <div class="project-role">Senior Developer</div>
+                    <p class="project-description">Architected and built a scalable multi-tenant ERP system serving
+                        100+ SMB clients with customizable workflows and modules.</p>
+                    <ul class="project-highlights">
+                        <li>Supported 10,000+ concurrent users</li>
+                        <li>99.9% uptime SLA achievement</li>
+                        <li>Modular plugin architecture</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">Django</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">Redis</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">🔄</div>
+                    <h3 class="project-title">Supply Chain Integration Hub</h3>
+                    <div class="project-role">Technical Lead</div>
+                    <p class="project-description">Built enterprise integration platform connecting ERP with warehouse,
+                        shipping, and vendor systems using ESB architecture.</p>
+                    <ul class="project-highlights">
+                        <li>Integrated 50+ external systems</li>
+                        <li>Processed 1M+ transactions daily</li>
+                        <li>Cut order fulfillment time by 40%</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Java</span>
+                        <span class="tech-badge">Spring</span>
+                        <span class="tech-badge">Apache Camel</span>
+                        <span class="tech-badge">RabbitMQ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Period 3: 2015-2019 - Modern Architecture -->
+        <div class="timeline-period">
+            <div class="period-header">
+                <div class="period-years">2015 - 2019</div>
+                <div class="period-title">Modern Architecture Era</div>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-icon">⚡</div>
+                    <h3 class="project-title">Real-Time Analytics Engine</h3>
+                    <div class="project-role">Principal Architect</div>
+                    <p class="project-description">Designed event-driven analytics platform using Kafka for streaming
+                        data from 200+ sources, processing billions of events monthly.</p>
+                    <ul class="project-highlights">
+                        <li>Sub-second latency on complex queries</li>
+                        <li>Processing 50k events/second</li>
+                        <li>ML-powered predictive insights</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Kafka</span>
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">Spark</span>
+                        <span class="tech-badge">Elasticsearch</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">🎯</div>
+                    <h3 class="project-title">Microservices ERP Suite</h3>
+                    <div class="project-role">Chief Architect</div>
+                    <p class="project-description">Led migration from monolithic architecture to microservices,
+                        implementing domain-driven design across 30+ bounded contexts.</p>
+                    <ul class="project-highlights">
+                        <li>Containerized all services with Docker</li>
+                        <li>Kubernetes orchestration</li>
+                        <li>99.99% availability achieved</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Elixir</span>
+                        <span class="tech-badge">Phoenix</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">Docker</span>
+                        <span class="tech-badge">K8s</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">💼</div>
+                    <h3 class="project-title">Super ERP Foundation</h3>
+                    <div class="project-role">Lead Architect</div>
+                    <p class="project-description">Architected the foundational platform for "Super ERP" - a
+                        next-generation enterprise system with AI-powered automation and unified data model.</p>
+                    <ul class="project-highlights">
+                        <li>Unified 12 legacy systems</li>
+                        <li>AI-powered workflow automation</li>
+                        <li>Real-time multi-currency support</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Elixir</span>
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">GraphQL</span>
+                        <span class="tech-badge">TimescaleDB</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">🌐</div>
+                    <h3 class="project-title">Global Distribution Platform</h3>
+                    <div class="project-role">Solutions Architect</div>
+                    <p class="project-description">Built cloud-native distribution and logistics platform supporting
+                        operations across 45 countries with multi-language and compliance features.</p>
+                    <ul class="project-highlights">
+                        <li>Multi-region deployment (AWS)</li>
+                        <li>GDPR & SOC2 compliant</li>
+                        <li>Sub-100ms response times globally</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">FastAPI</span>
+                        <span class="tech-badge">AWS</span>
+                        <span class="tech-badge">DynamoDB</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Period 4: 2020-2025 - Innovation & Leadership -->
+        <div class="timeline-period">
+            <div class="period-header">
+                <div class="period-years">2020 - 2025</div>
+                <div class="period-title">Innovation & Leadership</div>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-icon">🤖</div>
+                    <h3 class="project-title">AI-Powered ERP Intelligence</h3>
+                    <div class="project-role">Chief Technology Architect</div>
+                    <p class="project-description">Integrated machine learning models into Super ERP for predictive
+                        inventory management, demand forecasting, and anomaly detection.</p>
+                    <ul class="project-highlights">
+                        <li>95% forecast accuracy achieved</li>
+                        <li>Reduced stock-outs by 70%</li>
+                        <li>Automated 80% of routine decisions</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">TensorFlow</span>
+                        <span class="tech-badge">Kafka</span>
+                        <span class="tech-badge">MLflow</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">🔐</div>
+                    <h3 class="project-title">Zero-Trust Security Framework</h3>
+                    <div class="project-role">Security Architecture Lead</div>
+                    <p class="project-description">Implemented comprehensive zero-trust security model with
+                        identity-based access, end-to-end encryption, and audit trailing.</p>
+                    <ul class="project-highlights">
+                        <li>Zero security breaches in 3 years</li>
+                        <li>ISO 27001 certification</li>
+                        <li>Real-time threat detection</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Vault</span>
+                        <span class="tech-badge">OAuth2</span>
+                        <span class="tech-badge">mTLS</span>
+                        <span class="tech-badge">SIEM</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">📱</div>
+                    <h3 class="project-title">Mobile-First ERP Experience</h3>
+                    <div class="project-role">Mobile Platform Lead</div>
+                    <p class="project-description">Developed native mobile apps and progressive web apps bringing full
+                        ERP functionality to iOS, Android, and offline-capable browsers.</p>
+                    <ul class="project-highlights">
+                        <li>Offline-first architecture</li>
+                        <li>4.8★ average app rating</li>
+                        <li>60% of users prefer mobile</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-badge">React Native</span>
+                        <span class="tech-badge">Swift</span>
+                        <span class="tech-badge">Kotlin</span>
+                        <span class="tech-badge">PWA</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">🌟</div>
+                    <h3 class="project-title">Next-Gen Super ERP 2.0</h3>
+                    <div class="project-role">Executive Architect</div>
+                    <p class="project-description">Leading the development of Super ERP 2.0 with converged AI, IoT
+                        integration, blockchain supply chain, and quantum-ready cryptography.</p>
+                    <ul class="project-highlights">
+                        <li>Voice & gesture controls (NLP)</li>
+                        <li>IoT device integration (50k+ sensors)</li>
+                        <li>Blockchain-verified transactions</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Elixir</span>
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Kafka</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">Hyperledger</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Journey Stats Summary -->
+    <div class="journey-stats">
+        <h3 class="stats-title">Journey by the Numbers</h3>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">100+</span>
+                <span class="stat-label">Projects Delivered</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Enterprise Clients</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">15+</span>
+                <span class="stat-label">Technologies Mastered</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">1M+</span>
+                <span class="stat-label">Users Impacted</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">$500M+</span>
+                <span class="stat-label">Business Value Created</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">99.99%</span>
+                <span class="stat-label">Average Uptime</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <a href="index.html" class="back-button">← Back to Home</a>
+        <p>&copy; 2025 Big Bird. Crafting enterprise excellence for 20 years.</p>
+    </footer>
+
+    <script>
+        // Animated Background Canvas
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 2;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(0, 243, 255, 0.5)';
+                ctx.fill();
+            }
+        }
+
+        const particles = [];
+        for (let i = 0; i < 100; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            // Draw connections
+            particles.forEach((p1, i) => {
+                particles.slice(i + 1).forEach(p2 => {
+                    const dx = p1.x - p2.x;
+                    const dy = p1.y - p2.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 150) {
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(0, 243, 255, ${0.2 * (1 - distance / 150)})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                });
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Resize canvas on window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Scroll reveal animation for project cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+
+</html>
